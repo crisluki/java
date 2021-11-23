@@ -13,17 +13,12 @@ public class AlmacenUmbrellaCorp {
 	static ArrayList<Empleado>listaEmpleados = new ArrayList<Empleado>();
 	// OPCIONES POSIBLES DE EMPLEADO
 	public static String mostrarEmpleado (int numerosDNI) {
-			String cadena="";
-			if(listaEmpleados.isEmpty()) {
-				cadena= "esta vacio el array";	
-				}else {
-					for (Empleado o: listaEmpleados) {
-						if(o.getNumerosDNI()==numerosDNI) {
-							cadena = o.toString();
-						}
-					}
-				}
-			return cadena;
+		for (Empleado o : listaEmpleados) {
+			if (o.getNumerosDNI() == numerosDNI) {
+				return o.toString();
+			}
+		}
+		throw new IllegalArgumentException();
 		}
 	public static String mostrarListasEmpleados () {
 		String cadena="";
@@ -52,7 +47,7 @@ public class AlmacenUmbrellaCorp {
 	}
 	public static String modificarEmpleado(int numerosDNI, Double salarioNuevo) throws IOException {
 		if (listaEmpleados.isEmpty()) {
-			return "No hay ningún empleado.";
+			return "No hay ningï¿½n empleado.";
 		}else 
 		{
 			if(listaEmpleados.get(numerosDNI)!=null) {
