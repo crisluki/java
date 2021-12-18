@@ -2,16 +2,17 @@ package Prueba1;
 import java.sql.*;
 
 public class Ejercicio3Conectores {
-
+	static String usuario,password;
 	public static String recursivo(int num, String nifBusqueda, float salarioBusqueda){
 		String texto="";
 	try {// cargar el Driver
-		Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost/empresa", "root", "admin");
+		Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost/empresa", usuario, password);
 		// Preparamos la consulta
 		Statement sentencia = conexion.createStatement();
 		String sql = "Select * from empleados";
 		ResultSet resultado = sentencia.executeQuery(sql);
-		if(num == 1) {
+		switch (num) {
+		case 1:
 			while (resultado.next()) {
 				String NIF = resultado.getString("NIF");
 				String Nombre = resultado.getString("Nombre");
@@ -22,8 +23,7 @@ public class Ejercicio3Conectores {
 						"Apellidos->"+Apellidos+"\n"+
 						"Salario->"+Salario+"\n";			
 			}
-		}
-		if(num == 2) {
+		case 2:
 			while (resultado.next()) {
 				String nif = resultado.getString("NIF");
 				if(nif.equals(nifBusqueda)) {
@@ -37,8 +37,7 @@ public class Ejercicio3Conectores {
 							"Salario->"+Salario+"\n";
 				}
 			}
-		}
-		if(num == 3) {
+		case 3:
 			while (resultado.next()) {
 				Float salario = resultado.getFloat("Salario");
 				if(salario > salarioBusqueda) {
@@ -52,8 +51,7 @@ public class Ejercicio3Conectores {
 							"Salario->"+Salario+"\n";
 				}
 			}
-		}
-		if(num == 4) {
+		case 4:
 			while (resultado.next()) {
 				Float salario = resultado.getFloat("Salario");
 				if(salario <= salarioBusqueda) {
@@ -89,5 +87,9 @@ public class Ejercicio3Conectores {
 	}
 	public static String salario2Empleado(float salario2Busqueda) {
 		return recursivo(4,"",salario2Busqueda);
+	}
+	public static void registro(String user, String pass) {
+		usuario = user;
+		password = pass;
 	}
 }

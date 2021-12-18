@@ -5,6 +5,7 @@ public class Ejercicio3 {
 	static Scanner scanner = new Scanner(System.in);
 	public static void main(String[] args) { 
 		int opcion;
+			registro();
 		do {
 			menu();
 			opcion = scanner.nextInt();
@@ -28,9 +29,16 @@ public class Ejercicio3 {
 					float salario2Busqueda = scanner.nextFloat();
 					System.out.println(Ejercicio3Conectores.salario2Empleado(salario2Busqueda));
 					break;
-			default: System.out.println("**OPCION NO VALIDA**");
+			default:System.out.println("**OPCION NO VALIDA**");
 			}
 		} while (opcion != 0);
+	}
+	private static void registro() {
+		System.out.println("Mete usuario");
+		String usuario = scanner.nextLine();
+		System.out.println("Mete usuario");
+		String password = scanner.nextLine();
+		Ejercicio3Conectores.registro(usuario,password);
 	}
 	public static void menu() {
 		System.out.println("--------------------------------------------------------------");
